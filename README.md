@@ -43,23 +43,6 @@ seu-projeto/
 └── index.html
 ```
 
-### Opção 2: CDN
-
-```html
-<!-- CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
-
-<!-- JavaScript -->
-<script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/9level/lgpd-consent@1.0.0/dist/lgpd-consent.min.js"></script>
-```
-
-### Opção 3: NPM (em breve)
-
-```bash
-npm install @9level/lgpd-consent
-```
-
 ## 🔧 Uso Básico
 
 1. **Adicione os arquivos antes do `</body>`:**
