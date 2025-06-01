@@ -32,16 +32,16 @@ Sistema completo de gerenciamento de cookies em conformidade com a **LGPD** (Lei
 1. Baixe os arquivos necessários:
    - [cookieconsent.css](https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css)
    - [cookieconsent.umd.js](https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js)
-   - [lgpd-consent.js](./src/lgpd-consent.js)
+   - [lgpd-consent.js](./js/lgpd-consent.js)
 
 2. Adicione ao seu projeto:
 ```
-lgpd-consent/
+seu-projeto/
 ├── css/
 │   └── cookieconsent.css
 ├── js/
-│   └──cookieconsent.umd.js
-│   
+│   ├── cookieconsent.umd.js
+│   └── lgpd-consent.js
 └── index.html
 ```
 
@@ -72,6 +72,7 @@ npm install @9level/lgpd-consent
 
 <!-- JavaScript -->
 <script src="js/cookieconsent.umd.js"></script>
+<script src="js/lgpd-consent.js"></script>
 ```
 
 2. **Configure seus IDs de serviços:**
@@ -262,15 +263,12 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 - 📧 Email: suporte@9level.com.br
 - 🐛 Issues: [GitHub Issues](https://github.com/9level/lgpd-consent/issues)
-- 📖 Docs: [Wiki](https://github.com/9level/lgpd-consent/wiki)
 
 ## 🚀 Roadmap
 
-- [ ] Instalação via NPM
-- [ ] Suporte a múltiplos idiomas
+
 - [ ] Dashboard de analytics
 - [ ] Integração com WordPress
-- [ ] Integração com React/Vue/Angular
 - [ ] Modo de auditoria LGPD
 - [ ] Gerador de política de privacidade
 
