@@ -1,0 +1,168 @@
+<!-- Adicione antes do </body> em seu site -->
+
+<!-- CSS do Cookieconsent -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
+
+<!-- Biblioteca Cookieconsent -->
+<script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js"></script>
+
+<!-- Configuração LGPD -->
+<script>
+// Variável global para o CookieConsent
+var cc = null;
+
+// Função para carregar Google Analytics
+function loadGoogleAnalytics() {
+    if (cc && cc.allowedCategory('analytics') && typeof gtag === 'undefined') {
+        var script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID'; // SUBSTITUA
+        script.async = true;
+        document.head.appendChild(script);
+        
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID'); // SUBSTITUA pelo seu ID
+    }
+}
+
+// Função para carregar Facebook Pixel
+function loadFacebookPixel() {
+    if (cc && cc.allowedCategory('marketing') && typeof fbq === 'undefined') {
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID'); // SUBSTITUA pelo seu Pixel ID
+        fbq('track', 'PageView');
+    }
+}
+
+// Inicializa o sistema LGPD
+function initializeLGPD() {
+    if (typeof initCookieConsent === 'undefined') {
+        setTimeout(initializeLGPD, 100);
+        return;
+    }
+    
+    cc = initCookieConsent();
+    
+    cc.run({
+        current_lang: 'pt',
+        autoclear_cookies: true,
+        cookie_name: 'lgpd_cookie_consent',
+        cookie_expiration: 365,
+        page_scripts: true,
+
+        gui_options: {
+            consent_modal: {
+                layout: 'cloud',
+                position: 'bottom center',
+                transition: 'slide'
+            },
+            settings_modal: {
+                layout: 'box',
+                transition: 'slide'
+            }
+        },
+
+        onChange: function (cookie, changed_preferences) {
+            // Recarrega a página quando as preferências mudam
+            location.reload();
+        },
+
+        languages: {
+            'pt': {
+                consent_modal: {
+                    title: '🍪 Nós usamos cookies!',
+                    description: 'Respeitando a Lei Geral de Proteção de Dados Pessoais (LGPD - Lei N° 13.709/18), este site é transparente e permite você gerenciar suas preferências de aceites de cookies e mais. Clique em "preferências" para acessar nosso Portal de Privacidade.',
+                    primary_btn: {
+                        text: 'Aceitar todos',
+                        role: 'accept_all'
+                    },
+                    secondary_btn: {
+                        text: 'Preferências',
+                        role: 'settings'
+                    }
+                },
+                settings_modal: {
+                    title: 'Central de Preferências de Privacidade',
+                    save_settings_btn: 'Salvar configurações',
+                    accept_all_btn: 'Aceitar todos',
+                    reject_all_btn: 'Rejeitar todos',
+                    close_btn_label: 'Fechar',
+                    blocks: [
+                        {
+                            title: 'Uso de Cookies 📢',
+                            description: 'Utilizamos cookies para garantir as funcionalidades básicas do site e melhorar sua experiência online. Você pode escolher ativar/desativar cada categoria quando quiser.'
+                        }, {
+                            title: 'Cookies Estritamente Necessários',
+                            description: 'Estes cookies são essenciais para o funcionamento adequado do site.',
+                            toggle: {
+                                value: 'necessary',
+                                enabled: true,
+                                readonly: true
+                            }
+                        }, {
+                            title: 'Cookies de Analytics',
+                            description: 'Nos permitem medir e melhorar o desempenho do nosso site.',
+                            toggle: {
+                                value: 'analytics',
+                                enabled: false,
+                                readonly: false
+                            }
+                        }, {
+                            title: 'Cookies de Marketing',
+                            description: 'Usados para tornar as mensagens publicitárias mais relevantes para você.',
+                            toggle: {
+                                value: 'marketing',
+                                enabled: false,
+                                readonly: false
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    });
+    
+    // Carrega scripts baseado nas preferências salvas
+    setTimeout(function() {
+        if (cc.allowedCategory('analytics')) {
+            loadGoogleAnalytics();
+        }
+        if (cc.allowedCategory('marketing')) {
+            loadFacebookPixel();
+        }
+    }, 500);
+}
+
+// Inicia quando o DOM estiver pronto
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeLGPD);
+} else {
+    initializeLGPD();
+}
+</script>
+
+<!-- 
+Scripts condicionais alternativos (se preferir este método):
+
+<script type="text/plain" data-cookiecategory="analytics">
+    // Google Analytics
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID'); // SUBSTITUA pelo seu ID
+</script>
+
+<script type="text/plain" data-cookiecategory="marketing">
+    // Facebook Pixel
+    fbq('init', 'YOUR_PIXEL_ID'); // SUBSTITUA pelo seu Pixel ID
+    fbq('track', 'PageView');
+</script>
+-->
