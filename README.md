@@ -21,9 +21,7 @@ Sistema completo de gerenciamento de cookies em conformidade com a **LGPD** (Lei
 
 ## 🚀 Demo
 
-[Ver demonstração ao vivo](https://9level.github.io/lgpd-consent/demo/)
-
-![LGPD Consent Demo](https://via.placeholder.com/800x400/1a1a2e/4a7c7e?text=LGPD+Consent+Demo)
+[Ver demonstração ao vivo](https://lgpd.9level.com.br/)
 
 ## 📦 Instalação
 
